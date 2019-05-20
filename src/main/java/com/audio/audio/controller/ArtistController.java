@@ -48,7 +48,7 @@ public class ArtistController {
             method = RequestMethod.PUT,
             value = "/{id}"
     )
-    public Artist employe(@PathVariable(value = "id")Long id,@RequestBody Artist a)
+    public Artist employe(@PathVariable(value = "id")Long id,@RequestBody Artist a) throws Exception
     {
         return artistService.updateEmploye(id, a);
     }

@@ -1,6 +1,7 @@
 package com.audio.audio.service;
 
 import com.audio.audio.Repository.ArtistRepository;
+import com.audio.audio.exception.AlreadyExistException;
 import com.audio.audio.model.Artist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,7 @@ public class ArtistService {
     }
 
     public List<Artist> findByName(String name) throws Exception{
-        return artistRepository.findByNameLike(name);
+        return artistRepository.findByNameContaining(name);
     }
 
     public Page<Artist> findAll(Integer page, Integer size, String sortDirection, String sortProperty){
@@ -38,11 +39,16 @@ public class ArtistService {
     }
 
     public Artist saveArtist(Artist a) {
-        return artistRepository.save(a);
+        if(artistRepository.findByNameLike(a.getName()).size()==0) {
+            return artistRepository.save(a);
+        }else{
+            throw new AlreadyExistException("l'artist : " + a.getName() + " existe deja.");
+        }
     }
 
-    public Artist updateEmploye(Long id, Artist a) {
+    public Artist updateEmploye(Long id, Artist a) throws Exception {
         return artistRepository.save(a);
+
     }
 
 

@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "AlbumId")
+    @Column(name = "id")
     private Long id;
 
 

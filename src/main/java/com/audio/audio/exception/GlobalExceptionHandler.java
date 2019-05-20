@@ -28,4 +28,13 @@ public class GlobalExceptionHandler
         return e.getMessage();
     }
 
+
+    @ExceptionHandler(AlreadyExistException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public String AlreadyExistException(
+            AlreadyExistException alreadyExistException) {
+        return alreadyExistException.getMessage();
+    }
+
 }

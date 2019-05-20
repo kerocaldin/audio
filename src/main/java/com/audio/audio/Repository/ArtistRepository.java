@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface ArtistRepository extends JpaRepository<Artist,Long> {
+    List<Artist> findByNameContaining(String name);
     List<Artist> findByNameLike(String name);
 
     Page<Artist> findAll(Pageable pageable);
